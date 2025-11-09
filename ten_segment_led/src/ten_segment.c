@@ -55,5 +55,8 @@ static void
 init()
 {
 	DDRB |= (1 << PB7) | (1 << PB6) | (1 << PB0);
-	DDRD |= 0xfe;
+
+	DDRD |= (1 << PD7) | (1 << PD6) | (1 << PD5) | 
+			(1 << PD4) | (1 << PD3) | (1 << PD2) | 
+			(1 << PD1);
 }
