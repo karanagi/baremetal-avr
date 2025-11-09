@@ -1,12 +1,12 @@
 #define	F_CPU		1000000
 
+#include <stdlib.h>
 #include </usr/avr/include/util/delay.h>
 
 #include "display.h"
 #include "test.h"
 
-#define SLEEP_TIME		10000
-
+#define SLEEP_TIME		500
 
 static void init();
 static void display_set_mask(uint16_t);
