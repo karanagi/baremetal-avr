@@ -1,43 +1,12 @@
 #define	F_CPU		1000000
 
-#include </usr/avr/include/avr/io.h>
 #include </usr/avr/include/util/delay.h>
 
+#include "display.h"
 #include "test.h"
 
 #define SLEEP_TIME		10000
 
-enum {
-	RED0,
-	RED1,
-	YELLOW0,
-	YELLOW1,
-	YELLOW2,
-	GREEN0,
-	GREEN1,
-	GREEN2,
-	GREEN3,
-	BLUE0,
-	N_SEGMENTS,
-};
-
-typedef struct gpio {
-	volatile uint8_t	*reg;
-	uint8_t				bit;
-} gpio_t; 
-
-gpio_t display[N_SEGMENTS] = {
-	[RED0]		= { &PORTB, PB0 },
-	[RED1]		= { &PORTD, PD7 },
-	[YELLOW0]	= { &PORTD, PD6 },
-	[YELLOW1]	= { &PORTD, PD5 },
-	[YELLOW2]	= { &PORTB, PB7 },
-	[GREEN0]	= { &PORTB, PB6 },
-	[GREEN1]	= { &PORTD, PD4 },
-	[GREEN2]	= { &PORTD, PD3 },
-	[GREEN3]	= { &PORTD, PD2 },
-	[BLUE0]		= { &PORTD, PD1 },
-};
 
 static void init();
 static void display_set_mask(uint16_t);
