@@ -29,7 +29,7 @@ static void
 init()
 {
 	uart_init();
-	//adc_init();
+	adc_init();
 	turn_on_led();
 }
 

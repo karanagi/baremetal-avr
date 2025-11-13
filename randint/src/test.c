@@ -8,7 +8,7 @@
 #include "adc.h"
 
 #define BUFLEN			10
-#define SLEEP_TIME		1000
+#define SLEEP_TIME		200
 
 static void int_to_str_test();
 static void adc_test();
@@ -20,12 +20,23 @@ void
 test()
 {
 	//int_to_str_test();
+	adc_test();
 }
 
 static void
 adc_test()
 {
+	uint32_t		adcval;
+	char			buf[BUFLEN];
+
 	while (1) {
+
+		adcval = adc_read();
+		int_to_str(adcval, buf, BUFLEN);
+
+		uart_send_str(buf);
+		uart_send_newline();
+
 	}
 }
 
