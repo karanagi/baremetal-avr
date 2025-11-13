@@ -3,37 +3,39 @@
 #include </usr/avr/include/util/delay.h>
 #include "uart.h"
 #include "utils.h"
+#include "adc.h"
 
 #define SLEEP_TIME		1000
-#define BUFLEN			5
+#define BUFLEN			10
 
 static void init();
+static void turn_on_led();
+
+extern void test();
+
 /*
-static void init_adc();
 static void init_rng();
 */
 
 int
 main(void)
 {
-	uint32_t	testint = 0xfffffff;
-	char		buf[BUFLEN];
-
 	init();
-	while (1) {
-		int_to_str(testint, buf, BUFLEN);
 
-		uart_send_str(buf);
-		uart_send((uint8_t *) "\r\n", 2);
-		_delay_ms(SLEEP_TIME);
-	}
+	test();
 }
 
 static void
 init()
 {
 	uart_init();
+	//adc_init();
+	turn_on_led();
 }
 
-
-
+static void
+turn_on_led()
+{
+	DDRB |= (1 << PB0);
+	PORTB |= (1 << PB0);
+}

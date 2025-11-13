@@ -1,5 +1,7 @@
+#include <stdint.h>
+
 void
-int_to_str(long val, char *buf, int buflen)
+int_to_str(uint32_t val, char *buf, int buflen)
 {
 	int		ndigits = 0;
 

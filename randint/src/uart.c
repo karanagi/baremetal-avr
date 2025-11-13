@@ -6,7 +6,9 @@ void
 uart_init()
 {
 	UCSR0B |= (1 << TXEN0) | (1 << RXEN0);
-	UBRR0 = 6;		/* baud rate = 9600 */
+	UCSR0C |= (1 << UCSZ01) | (1 << UCSZ00);
+	//UBRR0 = 6;		/* baud rate = 9600 */
+	UBRR0 = 12;			/* baud rate = 4800 */
 }
 
 void
