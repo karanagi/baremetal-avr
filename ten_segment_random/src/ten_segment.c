@@ -62,8 +62,6 @@ init()
 {
 	init_rng();
 	display_init();
-
-	turn_on_led();
 }
 
 static void
