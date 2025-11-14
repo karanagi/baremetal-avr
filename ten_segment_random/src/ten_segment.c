@@ -6,7 +6,7 @@
 #include "display.h"
 #include "adc.h"
 
-#define SLEEP_TIME		500
+#define SLEEP_TIME		400
 
 static void init();
 static void turn_on_led();
