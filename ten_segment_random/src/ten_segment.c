@@ -7,6 +7,7 @@
 #include "adc.h"
 
 #define SLEEP_TIME		400
+#define MASK_MAX_VAL	1024
 
 static void init();
 static void turn_on_led();
@@ -23,7 +24,7 @@ main(void)
 
 	init();
 	while(1) {
-		val = rand();
+		val = rand() % MASK_MAX_VAL;
 		display_set_mask(val);
 
 		_delay_ms(SLEEP_TIME);
