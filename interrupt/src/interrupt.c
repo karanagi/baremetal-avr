@@ -62,23 +62,15 @@ init_interrupts()
 static void
 init_timer()
 {
-	//TCCR1B |= (1 << WGM12) | (1 << CS12) | (1 << CS10);
 	TCCR1B |= (1 << WGM12) | (1 << CS12) | (1 << CS10);
 }
 
 ISR(INT0_vect)
 {
-	/*
-	if (is_button_press() && has_n_times_elapsed(10)) {
-		save_timer_value();
+	if (is_button_press() && has_n_times_elapsed(20)) 
 		count++;
-	}
-	*/
 
-	if (is_button_press()) {
-		save_timer_value();
-		count++;
-	}
+	save_timer_value();
 }
 
 static inline bool 
