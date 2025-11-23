@@ -14,6 +14,11 @@ enum {
 	INPUT_PIN		= PC5,
 };
 
+enum {
+	GPIO_LOW		= false,
+	GPIO_HIGH	 	= true,
+};
+
 static volatile int counter = 0;
 
 static void init();
@@ -54,5 +59,10 @@ pcint_init()
 
 ISR(PCINT1_vect)
 {
-	counter++;
+	static bool last_state = GPIO_HIGH;
+
+	if (last_state == GPIO_HIGH)
+		counter++;
+
+	last_state = !last_state;
 }
