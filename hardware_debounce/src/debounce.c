@@ -14,16 +14,12 @@ enum {
 	INPUT_PIN		= PC5,
 };
 
-enum {
-	GPIO_LOW		= false,
-	GPIO_HIGH	 	= true,
-};
-
 static volatile int counter = 0;
 
 static void init();
 static void pcint_init();
 static void print_counter();
+static inline bool is_button_pressed();
 
 int
 main(void)
@@ -57,12 +53,17 @@ pcint_init()
 	PCMSK1 |= (1 << PCINT13);
 }
 
+static inline bool 
+is_button_pressed()
+{
+	if (PINC &= (1 << INPUT_PIN))
+		return false;
+	else
+		return true;
+}
+
 ISR(PCINT1_vect)
 {
-	static bool last_state = GPIO_HIGH;
-
-	if (last_state == GPIO_HIGH)
+	if (is_button_pressed())
 		counter++;
-
-	last_state = !last_state;
 }
