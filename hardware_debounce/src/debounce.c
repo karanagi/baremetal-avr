@@ -51,15 +51,15 @@ pcint_init()
 {
 	PCICR |= (1 << PCIE1);
 	PCMSK1 |= (1 << PCINT13);
-}
+
 
 static inline bool 
 is_button_pressed()
 {
 	if (PINC &= (1 << INPUT_PIN))
-		return false;
-	else
 		return true;
+	else
+		return false;
 }
 
 ISR(PCINT1_vect)
