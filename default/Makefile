@@ -1,8 +1,8 @@
 PROGRAM_NAME = default
 SRC_DIR = src
 BUILD_DIR = build
-MCU = attiny85
-AVRDUDE_PARTNUM = t85
+MCU = atmega328p
+AVRDUDE_PARTNUM = m328p
 
 all: $(PROGRAM_NAME)
 
@@ -11,7 +11,7 @@ $(BUILD_DIR):
 	mkdir -pv $(BUILD_DIR)
 
 $(PROGRAM_NAME): $(BUILD_DIR)
-	avr-gcc -mmcu=$(MCU) -Wall -Os -o $(BUILD_DIR)/$(PROGRAM_NAME).elf $(SRC_DIR)/$(PROGRAM_NAME).c
+	avr-gcc -mmcu=$(MCU) -Wall -Os -o $(BUILD_DIR)/$(PROGRAM_NAME).elf $(SRC_DIR)/*.c
 	avr-objcopy -j .text -j .data -O ihex $(BUILD_DIR)/$(PROGRAM_NAME).elf $(BUILD_DIR)/$(PROGRAM_NAME).hex
 
 flash: $(PROGRAM_NAME)
