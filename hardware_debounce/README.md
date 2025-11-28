@@ -4,4 +4,4 @@
 
 ## Update 2025-11-27
 
-Decided to try a proper debounce solution with a low-pass filter and schmitt trigger. I have referenced [this video](<https://inv.nadeko.net/watch?v=EPSCd9rApUU>) to learn how to desining a filter. 
+I have decided to try a proper debounce solution with a low-pass filter and schmitt trigger. I have referenced [this video](<https://inv.nadeko.net/watch?v=EPSCd9rApUU>) to learn how to designing a filter. 
