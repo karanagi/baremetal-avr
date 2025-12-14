@@ -6,7 +6,7 @@
 
 #include "adc.h"
 
-#define TIMER_MASK			(1 << CS01)
+#define TIMER_MASK			(1 << CS21)
 
 /* sleep should be between 100 and 1000 */
 
@@ -49,11 +49,11 @@ init()
 void 
 init_timers()
 {
-	TCCR0A |= (1 << WGM01);
-	TCCR0B |= TIMER_MASK;
-	TIMSK0 |= (1 << OCIE0B) | (1 << OCIE0A);
-	OCR0A = 100;			/* timer for sleep */
-	OCR0B = 5;				/* timer for ADC poll */
+	TCCR2A |= (1 << WGM21);
+	TCCR2B |= TIMER_MASK;
+	TIMSK2 |= (1 << OCIE0B) | (1 << OCIE0A);
+	OCR2A = 100;			/* timer for sleep */
+	OCR2B = 5;				/* timer for ADC poll */
 
 }
 
@@ -65,12 +65,12 @@ sleep()
 		;
 }
 
-ISR(TIMER0_COMPA_vect)
+ISR(TIMER2_COMPA_vect)
 {
 	counter++;
 }
 
-ISR(TIMER0_COMPB_vect)
+ISR(TIMER2_COMPB_vect)
 {
 	uint16_t		val;
 
