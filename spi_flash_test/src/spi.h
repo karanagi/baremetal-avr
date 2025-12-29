@@ -38,4 +38,10 @@ spi_send_dummy_bytes(int count)
 		(void) spi_xchg_data(0);
 }
 
+static inline uint8_t
+spi_read()
+{
+	return spi_xchg_data(0);
+}
+
 #endif

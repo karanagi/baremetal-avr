@@ -8,19 +8,37 @@
 #include "spi.h"
 
 void init();
+void dump_jedec();
 
 int
 main(void)
 {
-	id_t		id;
 
 	init();
 
 	while (1) {
-		id = flash_read_id();
-		uart_send_int((uint32_t) id.manufacturer_id);
-		uart_send_int((uint32_t) id.device_id);
+		dump_jedec();
+		_delay_ms(1000);
 	}
+}
+
+void 
+dump_jedec()
+{
+	jedec_t		jedec_id;
+
+	jedec_id = flash_get_jedec_id();
+
+	uart_send_str("Manufacturer id: ");
+	uart_send_int(jedec_id.manufacturer_id);
+
+	uart_send_str("Memory type id: ");
+	uart_send_int(jedec_id.memtype);
+
+	uart_send_str("Capacity id: ");
+	uart_send_int(jedec_id.capacity);
+
+	uart_send_newline();
 }
 
 void 
