@@ -4,7 +4,7 @@ A test program to get a feel for interacting with a SPI device (in this case the
 
 The program reads the following informatoin and dumps it to the user through UART: 
 - status register before and after a software reset (command 0x66 and 0x99)
-- JEDEC ID (vendor ID) of the flash chip
+- JEDEC ID (vendor ID) of the flash chip (command 0x9f)
 
 The only issue is, however, the initial value (default value) of the status registers for this particular break-out board is unknown, so I am not able to confirm if the output I am getting is actually what it's supposed to be.
 
