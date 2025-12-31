@@ -6,6 +6,7 @@
 #include "uart.h"
 #include "flash.h"
 #include "spi.h"
+#include "utils.h"
 
 void init();
 void dump_status();
@@ -41,13 +42,13 @@ dump_jedec()
 	jedec_id = flash_get_jedec_id();
 
 	uart_send_str("Manufacturer id: ");
-	uart_send_int(jedec_id.manufacturer_id);
+	print_hex(jedec_id.manufacturer_id);
 
 	uart_send_str("Memory type id: ");
-	uart_send_int(jedec_id.memtype);
+	print_hex(jedec_id.memtype);
 
 	uart_send_str("Capacity id: ");
-	uart_send_int(jedec_id.capacity);
+	print_hex(jedec_id.capacity);
 
 	uart_send_newline();
 }
