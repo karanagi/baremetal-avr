@@ -48,7 +48,7 @@ dump_jedec()
 	print_hex(jedec_id.memtype, true);
 
 	uart_send_str("Capacity id: ");
-	print_hex(jedec_id.capacity, false);
+	print_hex(jedec_id.capacity, true);
 
 	uart_send_newline();
 }
