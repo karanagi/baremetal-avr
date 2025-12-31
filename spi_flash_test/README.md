@@ -6,3 +6,18 @@ The program reads the following informatoin and dumps it to the user through UAR
 - status register before and after a software reset (command 0x66 and 0x99)
 - JEDEC ID (vendor ID) of the flash chip
 
+The only issue is, however, the initial value (default value) of the status registers for this particular break-out board is unknown, so I am not able to confirm if the output I am getting is actually what it's supposed to be.
+
+```console
+Before reset:                                              
+status1: 0x90                                              
+status2: 0x2                                               
+                                                           
+After reset:                                               
+status1: 0x90                                              
+status2: 0x2                                               
+                                                           
+Manufacturer id: 0xef                                      
+Memory type id: 0x40                                       
+Capacity id: 0x17         
+```
