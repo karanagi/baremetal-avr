@@ -62,10 +62,10 @@ dump_status()
 	status2 = flash_get_status(FLASH_STATUS_REG2);
 
 	uart_send_str("status1: ");
-	uart_send_int(status1);
+	print_hex(status1, true);
 
 	uart_send_str("status2: ");
-	uart_send_int(status2);
+	print_hex(status2, true);
 }
 
 void 
