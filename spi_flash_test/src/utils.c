@@ -1,5 +1,4 @@
-#include <stdint.h>
-
+#include "utils.h"
 #include "uart.h"
 
 #define NDIGITS		8
@@ -30,14 +29,15 @@ int_to_str(uint32_t val, char *buf, int buflen)
 }
 
 void
-print_hex(int n)
+print_hex(int n, bool prefix)
 {
 	char		buf[NDIGITS] = {0};
 	
 	if (hex_to_str(buf, NDIGITS, n) == -1)
 		uart_send_str("print_hex(): integer too long");
 
-	uart_send_str("0x");
+	if (prefix)
+		uart_send_str("0x");
 	uart_send_str(buf);
 	uart_send_newline();
 }

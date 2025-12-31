@@ -42,13 +42,13 @@ dump_jedec()
 	jedec_id = flash_get_jedec_id();
 
 	uart_send_str("Manufacturer id: ");
-	print_hex(jedec_id.manufacturer_id);
+	print_hex(jedec_id.manufacturer_id, true);
 
 	uart_send_str("Memory type id: ");
-	print_hex(jedec_id.memtype);
+	print_hex(jedec_id.memtype, true);
 
 	uart_send_str("Capacity id: ");
-	print_hex(jedec_id.capacity);
+	print_hex(jedec_id.capacity, false);
 
 	uart_send_newline();
 }
