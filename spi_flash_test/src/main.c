@@ -8,6 +8,7 @@
 #include "spi.h"
 
 void init();
+void dump_status();
 void dump_jedec();
 
 int
@@ -17,7 +18,17 @@ main(void)
 	init();
 
 	while (1) {
+		uart_send_str("Before reset: \r\n");
+		dump_status();
+
+		flash_reset();
+
+		uart_send_str("\r\nAfter reset: \r\n");
+		dump_status();
+		uart_send_newline();
+
 		dump_jedec();
+
 		_delay_ms(1000);
 	}
 }
@@ -39,6 +50,21 @@ dump_jedec()
 	uart_send_int(jedec_id.capacity);
 
 	uart_send_newline();
+}
+
+void
+dump_status()
+{
+	uint8_t		status1, status2;
+
+	status1 = flash_get_status(FLASH_STATUS_REG1);
+	status2 = flash_get_status(FLASH_STATUS_REG2);
+
+	uart_send_str("status1: ");
+	uart_send_int(status1);
+
+	uart_send_str("status2: ");
+	uart_send_int(status2);
 }
 
 void 
