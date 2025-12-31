@@ -38,6 +38,7 @@ print_hex(int n, bool prefix)
 
 	if (prefix)
 		uart_send_str("0x");
+
 	uart_send_str(buf);
 	uart_send_newline();
 }
