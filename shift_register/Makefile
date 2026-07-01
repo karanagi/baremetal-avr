@@ -1,8 +1,8 @@
-PROGRAM_NAME = default
+PROGRAM_NAME = shfit
 SRC_DIR = src
 BUILD_DIR = build
-MCU = atmega328p
-AVRDUDE_PARTNUM = m328p
+MCU = attiny85
+AVRDUDE_PARTNUM = t85
 
 all: $(PROGRAM_NAME)
 
