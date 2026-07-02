@@ -20,11 +20,13 @@ main(void)
 {
 	gpio_t		ser, rclk, srclk;
 
-	gpio_init(&srclk, PB0);
-	gpio_set_dir(&srclk, GPIO_OUTPUT);
+	gpio_init_as_output(&srclk, PB0);
+	gpio_init_as_output(&rclk, PB1);
+	gpio_init_as_output(&ser, PB2);
 
 	while (1) {
 		gpio_toggle(&srclk);
 		_delay_ms(SLEEP_TIME);
 	}
 }
+

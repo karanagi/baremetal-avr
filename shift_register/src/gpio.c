@@ -10,6 +10,13 @@ gpio_init(gpio_t *gpio, uint8_t pin)
 }
 
 void 
+gpio_init_as_output(gpio_t *gpio, uint8_t pin)
+{
+	gpio_init(gpio, pin);
+	gpio_set_dir(gpio, GPIO_OUTPUT);
+}
+
+void 
 gpio_set_dir(gpio_t *gpio, int dir)
 {
 	if (dir == GPIO_INPUT) 

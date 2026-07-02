@@ -23,6 +23,7 @@ typedef struct gpio {
 } gpio_t;
 
 void gpio_init(gpio_t *, uint8_t);
+void gpio_init_as_output(gpio_t *, uint8_t);
 void gpio_set_dir(gpio_t *, int);
 void gpio_toggle(gpio_t *);
 
