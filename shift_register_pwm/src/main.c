@@ -8,17 +8,10 @@
 #define FADE_UP_DELAY		10
 #define FADE_DOWN_DELAY		7000
 
-/* 
- * PB0: OE (PWM)
- * PB1: SRCLK
- * PB2: RCLK
- * PB3: SER
- */
-
-#define SHIFT_REG_OE		(PB0)
-#define SHIFT_REG_SRCLK		(PB1)
-#define SHIFT_REG_RCLK		(PB2)
-#define SHIFT_REG_SER		(PB3)
+#define SHIFT_REGISTER_OE		(PB0)
+#define SHIFT_REGISTER_SRCLK		(PB1)
+#define SHIFT_REGISTER_RCLK		(PB2)
+#define SHIFT_REGISTER_SER		(PB3)
 
 enum {
 	GPIO_LOW,
@@ -80,15 +73,15 @@ init()
 void 
 init_gpio()
 {
-	DDRB |= (1 << SHIFT_REG_SRCLK) | (1 << SHIFT_REG_RCLK) | 
-			(1 << SHIFT_REG_SER);
+	DDRB |= (1 << SHIFT_REGISTER_SRCLK) | (1 << SHIFT_REGISTER_RCLK) | 
+			(1 << SHIFT_REGISTER_SER);
 
 }
 
 void
 init_pwm()
 {
-	DDRB |= (1 << SHIFT_REG_OE);
+	DDRB |= (1 << SHIFT_REGISTER_OE);
 
 	TCCR0A |= (1 << COM0A1) | (1 << WGM01) | (1 << WGM00);
 	TCCR0B |= (1 << CS00);
@@ -113,12 +106,12 @@ void
 shift_register_set(uint8_t val)
 {
 	for (int i = 0; i < 8; i++) {
-		gpio_set(SHIFT_REG_SER, val & 1);
-		generate_pulse(SHIFT_REG_SRCLK);
+		gpio_set(SHIFT_REGISTER_SER, val & 1);
+		generate_pulse(SHIFT_REGISTER_SRCLK);
 		val >>= 1;
 	}
 
-	generate_pulse(SHIFT_REG_RCLK);
+	generate_pulse(SHIFT_REGISTER_RCLK);
 }
 
 int
