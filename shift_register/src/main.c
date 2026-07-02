@@ -3,23 +3,28 @@
 #include </usr/avr/include/avr/io.h>
 #include </usr/avr/include/util/delay.h>
 
-#define SLEEP_TIME		100
+#include "gpio.h"
 
-void init();
+#define SLEEP_TIME		1000
+
+
+
+/* 
+ * PB2: SER
+ * PB1: RCLK
+ * PB0: SRCLK
+ */
 
 int
 main(void)
 {
-	init();
+	gpio_t		ser, rclk, srclk;
+
+	gpio_init(&srclk, PB0);
+	gpio_set_dir(&srclk, GPIO_OUTPUT);
 
 	while (1) {
-		PORTB ^= (1 << PB0);
+		gpio_toggle(&srclk);
 		_delay_ms(SLEEP_TIME);
 	}
-}
-
-void
-init()
-{
-	DDRB |= (1 << PB0);
 }
