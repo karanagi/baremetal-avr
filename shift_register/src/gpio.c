@@ -1,3 +1,6 @@
+#define F_CPU	1000000
+
+#include </usr/avr/include/util/delay.h>
 #include "gpio.h"
 
 void
@@ -30,3 +33,21 @@ gpio_toggle(gpio_t *gpio)
 {
 	*gpio->port ^= (1 << gpio->pin);
 }
+
+void
+gpio_set(gpio_t *gpio, int val)
+{
+	uint8_t		mask;
+
+	mask = (1 << gpio->pin);
+
+	/* return if gpio not configured as output */
+	if (!(*gpio->ddr & mask))
+		return;
+
+	if (val == GPIO_LOW)
+		*gpio->port &= ~mask;
+	else
+		*gpio->port |= mask;
+}
+

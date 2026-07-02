@@ -12,7 +12,12 @@
 
 enum {
 	GPIO_INPUT,
-	GPIO_OUTPUT,
+	GPIO_OUTPUT
+};
+
+enum {
+	GPIO_LOW,
+	GPIO_HIGH
 };
 
 typedef struct gpio {
@@ -26,5 +31,6 @@ void gpio_init(gpio_t *, uint8_t);
 void gpio_init_as_output(gpio_t *, uint8_t);
 void gpio_set_dir(gpio_t *, int);
 void gpio_toggle(gpio_t *);
+void gpio_set(gpio_t *, int);
 
 #endif
