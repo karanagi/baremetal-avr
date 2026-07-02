@@ -67,7 +67,6 @@ sequential()
 	for (int i = 0; i < 8; i++) {
 		shift_register_set(1 << i);
 		fade_leds();
-		//_delay_ms(1
 	}
 }
 
